@@ -1,6 +1,6 @@
-package co.unicauca.SeguimientoAcciones.infrastructure.adapters;
+package co.unicauca.SeguimientoAcciones.infrastructure.adapters.rest;
 
-import co.unicauca.SeguimientoAcciones.infrastructure.repositories.SqlLiteRepository;
+import co.unicauca.SeguimientoAcciones.infrastructure.adapters.repositories.SqlLiteRepository;
 import co.unicauca.SeguimientoAcciones.domain.model.Usuario;
 import io.micrometer.common.lang.NonNull;
 import org.springframework.web.bind.annotation.PostMapping;

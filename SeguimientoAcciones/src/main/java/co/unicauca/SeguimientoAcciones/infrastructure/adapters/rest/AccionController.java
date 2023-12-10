@@ -1,11 +1,10 @@
-package co.unicauca.SeguimientoAcciones.infrastructure.adapters;
+package co.unicauca.SeguimientoAcciones.infrastructure.adapters.rest;
 
-import co.unicauca.SeguimientoAcciones.infrastructure.repositories.BolsaValoresRepository;
+import co.unicauca.SeguimientoAcciones.infrastructure.adapters.repositories.BolsaValoresRepository;
 import co.unicauca.SeguimientoAcciones.domain.model.Accion;
 import lombok.NonNull;
 import org.springframework.web.bind.annotation.*;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 @RestController

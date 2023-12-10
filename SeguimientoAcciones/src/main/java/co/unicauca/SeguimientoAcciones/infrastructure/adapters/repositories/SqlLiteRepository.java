@@ -1,4 +1,4 @@
-package co.unicauca.SeguimientoAcciones.infrastructure.repositories;
+package co.unicauca.SeguimientoAcciones.infrastructure.adapters.repositories;
 
 import co.unicauca.SeguimientoAcciones.domain.model.*;
 
