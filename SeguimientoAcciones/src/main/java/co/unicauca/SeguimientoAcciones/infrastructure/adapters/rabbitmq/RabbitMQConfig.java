@@ -13,7 +13,8 @@ public class RabbitMQConfig {
 
     @Bean
     public Queue queue(){
-        return new Queue(message,true);
+        return new Queue(message,false);
     }
+
 
 }
