@@ -10,6 +10,7 @@ public interface IGestionAccionesRepository {
     boolean deleteActionUser(int idUsuario, String nombreAccion);
     AccionUsuario findActionUser(int idUsuario, String nombreAccion);
     List<AccionUsuario> findAllActionsUser(int idUsuario);
+    List<AccionUsuario> findAllUsersAction(String nombreAccion);
     boolean saveNotification(int idUsuario, Notificacion notificacion);
     List<Notificacion> findAllNotifications(int idUsuario);
 }

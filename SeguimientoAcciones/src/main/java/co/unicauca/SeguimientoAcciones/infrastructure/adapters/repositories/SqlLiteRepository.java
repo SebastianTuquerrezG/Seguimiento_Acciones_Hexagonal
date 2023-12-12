@@ -16,9 +16,10 @@ import java.util.logging.Logger;
 public class SqlLiteRepository implements IGestionAccionesRepository {
     private Connection conn;
 
-    private final BolsaValoresRepository bolsaValoresRepository = new BolsaValoresRepository();
+    private BolsaValoresRepository bolsaValoresRepository;
 
-    public SqlLiteRepository(){
+    public SqlLiteRepository(BolsaValoresRepository bolsaValoresrepository){
+        bolsaValoresRepository=bolsaValoresrepository;
         initDatabase();
     }
 
@@ -195,13 +196,13 @@ public class SqlLiteRepository implements IGestionAccionesRepository {
             ResultSet res = pstmt.executeQuery();
 
             if (res.next()) {
-                AccionUsuario action = new AccionUsuario();
-                action.setUmbralSuperior(res.getInt("umbralSuperior"));
-                action.setUmbralInferior(res.getInt("umbralInferior"));
-                action.getUsuario().setId((int) res.getInt("idUsuario"));
-                action.getAccion().setNombreAccion(res.getString("nombreAccion"));
+                AccionUsuario actionUser = new AccionUsuario();
+                actionUser.setUmbralSuperior(res.getInt("umbralSuperior"));
+                actionUser.setUmbralInferior(res.getInt("umbralInferior"));
+                actionUser.getUsuario().setId((int) res.getInt("idUsuario"));
+                actionUser.getAccion().setNombreAccion(res.getString("nombreAccion"));
 
-                return action;
+                return actionUser;
             } else {
                 return null;
             }
@@ -224,6 +225,37 @@ public class SqlLiteRepository implements IGestionAccionesRepository {
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,idUsuario);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                AccionUsuario action = new AccionUsuario();
+                action.setUmbralSuperior(rs.getInt("umbralSuperior"));
+                action.setUmbralInferior(rs.getInt("umbralInferior"));
+                action.setUsuario(new Usuario());
+                action.getUsuario().setId((int) rs.getInt("idUsuario"));
+                action.setAccion(new Accion());
+                action.getAccion().setNombreAccion(rs.getString("nombreAccion"));
+
+                actions.add(action);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(BolsaValoresRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return actions;
+    }
+    @Override
+    public List<AccionUsuario> findAllUsersAction(String nombreAccion) {
+        List<AccionUsuario> actions = new ArrayList<>();
+        try {
+            if (nombreAccion.isBlank()) {
+                return null;
+            }
+
+            String sql = "SELECT * FROM usuarioAccion "
+                    + "WHERE nombreAccion = ?";
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,nombreAccion);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 AccionUsuario action = new AccionUsuario();

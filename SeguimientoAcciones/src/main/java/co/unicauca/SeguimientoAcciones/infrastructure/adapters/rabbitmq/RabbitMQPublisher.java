@@ -14,6 +14,6 @@ public class RabbitMQPublisher {
     private Queue queue;
 
     public void send(Object message){
-        rabbitTemplate.convertAndSend(queue.getName(),message);
+        rabbitTemplate.convertAndSend("cola1",message);
     }
 }
