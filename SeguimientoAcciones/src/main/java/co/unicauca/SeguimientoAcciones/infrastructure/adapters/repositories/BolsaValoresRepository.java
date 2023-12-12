@@ -2,6 +2,7 @@ package co.unicauca.SeguimientoAcciones.infrastructure.adapters.repositories;
 
 import co.unicauca.SeguimientoAcciones.domain.model.Accion;
 import co.unicauca.SeguimientoAcciones.domain.ports.IBolsaValoresRepository;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Repository
 public class BolsaValoresRepository implements IBolsaValoresRepository{
 
     private Connection conn;

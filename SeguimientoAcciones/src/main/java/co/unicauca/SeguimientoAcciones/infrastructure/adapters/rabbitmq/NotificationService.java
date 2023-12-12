@@ -1,6 +1,5 @@
 package co.unicauca.SeguimientoAcciones.infrastructure.adapters.rabbitmq;
 
-import co.unicauca.SeguimientoAcciones.SeguimientoAccionesApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
