@@ -19,21 +19,5 @@ public class RabbitMQSubscriber {
         this.bolsaValoresRepository = bolsaValoresRepository;
     }
 
-    @RabbitListener(queues ={"${sacavix.queue.name}"})
-    public void escuchar (@Payload String message){
-        log.info("Mensaje recibido: {} ",message);
 
-        Accion accion = bolsaValoresRepository.findAction(message);
-
-        if(accion != null){
-            if (accion.getPrecioActual() > accion.getPrecioAnterior())
-                log.info("El precio de la accion {} ha subido",accion.getNombreAccion());
-            else if (accion.getPrecioActual() < accion.getPrecioAnterior())
-                log.info("El precio de la accion {} ha bajado",accion.getNombreAccion());
-            else
-                log.info("El precio de la accion {} se ha mantenido",accion.getNombreAccion());
-        } else {
-            log.info("La accion {} no existe",message);
-        }
-    }
 }

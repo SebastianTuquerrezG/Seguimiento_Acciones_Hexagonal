@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    @Value("${sacavix.queue.name}")
+    @Value("cola1")
     private String message;
 
     @Bean
