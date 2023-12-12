@@ -94,7 +94,6 @@ public class BolsaValoresRepository implements IBolsaValoresRepository{
                     + "WHERE nombreAccion = ?";
 
             Accion action = findAction(nombreAccion);
-
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setLong(1, precioActual);
             pstmt.setLong(2, action.getPrecioActual());
