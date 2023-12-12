@@ -10,13 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.messaging.handler.annotation.Payload;
 
 @Slf4j
-@SpringBootApplication
 public class MiAgenteFinanciero {
 
     private final int id = 21; //Id de usuario
-    public static void main(String[] args) {
-        SpringApplication.run(SeguimientoAccionesApplication.class, args);
-    }
+    //public static void main(String[] args) {
+        //SpringApplication.run(SeguimientoAccionesApplication.class, args);
+    //}
+
     @RabbitListener(queues ={"cola1"})
     public void escuchar (@Payload Object notificacion){
 
