@@ -2,17 +2,18 @@ package co.unicauca.SeguimientoAcciones.domain.model;
 
 import co.unicauca.SeguimientoAcciones.infrastructure.adapters.rabbitmq.RabbitMQPublisher;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Data
-public class AccionUsuario implements IObserver{
+@Service
+public class AccionUsuario{
     private long UmbralInferior;
     private long UmbralSuperior;
     private Usuario usuario;
     private Accion accion;
     private RabbitMQPublisher publisher = new RabbitMQPublisher();
 
-    @Override
     public void notificar(String nombreAccion, long precioActual) {
         if(UmbralInferior>precioActual){
             Notificacion notificacion = new Notificacion();
